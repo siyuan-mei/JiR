@@ -1,0 +1,31 @@
+--index-url https://pypi.org/simple
+--extra-index-url https://download.pytorch.org/whl/cu126
+
+# Core environment
+numpy
+scipy
+scikit-learn
+python-dotenv
+omegaconf==2.3.0
+
+# Medical imaging
+SimpleITK==2.5.0
+TotalSegmentator==2.9.0
+monai==1.4.0
+evalutils==0.3.1
+
+# PyTorch stack (CUDA 12.6)
+torch==2.6.0+cu126
+torchvision==0.21.0+cu126
+torchaudio==2.6.0+cu126
+
+# Model architectures
+timm==1.0.15
+lpips
+
+# Lightning framework
+lightning
+lightning-utilities==0.14.3
+
+# Experiment tracking
+wandb

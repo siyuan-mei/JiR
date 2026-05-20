@@ -1,0 +1,20 @@
+# Install a CUDA-compatible PyTorch build separately when needed.
+numpy
+scipy
+scikit-learn
+omegaconf==2.3.0
+
+# Medical imaging
+SimpleITK==2.5.0
+monai==1.4.0
+
+# Model architectures and losses
+timm==1.0.15
+lpips
+
+# Training and logging
+lightning
+lightning-utilities==0.14.3
+wandb
+tqdm
+matplotlib

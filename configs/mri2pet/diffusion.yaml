@@ -1,0 +1,105 @@
+data_cfg:
+  dataset: "mri2pet"
+  patch_based: False
+  data_root: 'E:\datasets\mri2pet\adni_split_data\fold1'
+  crop_size: [128, 128, 128]
+  resize_size: null # [96, 96, 96]
+
+model_cfg:
+  model_type: "diffusion"
+  net:
+    type: "CondUNet"
+    input_channels: 1
+    n_stages: 6
+    features_per_stage: [32, 64, 128, 256, 320, 320]
+    kernel_sizes: 3
+    strides: [1, 2, 2, 2, 2, 2]
+    n_blocks_per_stage: [1, 3, 4, 6, 6, 6] # [1, 3, 4, 6, 6]
+    n_conv_per_stage_decoder: [1, 1, 1, 1, 1] # [2, 2, 2, 2]
+    num_classes: 1
+
+    # conditioning + io consistency
+    use_img_cond: True
+    num_label_classes: 4
+    use_t_emb: True
+    use_y_emb: False
+
+  diffusion:
+    use_img_cond: True
+
+    flow_mode: "BiF"
+    drift_scale: 1
+    prediction_space: "x"
+    loss_space: "x"
+
+    t_weighted: True
+    t_scale: 1
+
+    use_t_consistency: False
+    lambda_t: 1
+    mixed_batch: False
+
+    class_num: 4
+
+    if_regression: False
+    t_sample: "beta"
+    beta_warmup_epochs: 0
+    beta1: 1
+    beta2: 1
+
+    zero_t_prob: 0
+    one_t_prob: 0
+    P_mean: -0.8
+    P_std: 0.8
+    t_eps: 0.05
+
+    condition_drop_prob: 0.
+    label_drop_prob: 0. # 0.1
+    noise_scale: 1
+
+    # ema
+    use_ema: False
+    ema_decay: 0.9999
+
+    # generation hyper params
+    sampling_method: "heun"
+    num_sampling_steps: 1
+    use_cfg: False
+    cfg_scale: 0.2
+    interval_min: 0.
+    interval_max: 1.0
+
+train_cfg:
+  devices: 1
+  num_workers: 4
+  precision: "32-true"    # 16-mixed 32-true
+  batch_size: 4
+  num_epochs: 500
+  save_freq: 50
+  limit_train_batches: .inf
+  loss: ["mse"]
+  loss_weights:
+    mse: 1.0
+
+val_cfg:
+  start_val: 0
+  val_freq: 50
+  limit_val_batches: .inf
+
+optim_cfg:
+  optimizer: "adam"
+  base_lr: 2e-4
+  start_factor: 0.01
+  lr_min: 0.
+  weight_decay: 0.0
+  layer_decay: null
+  warmup_epochs: 5
+  grad_clip: null
+  betas: [0.9, 0.95]
+  eps: 1e-8
+  scheduler: 'warmup'  # 'cosine', 'plateau'
+
+automatic_lr_rescale: True
+
+
+
