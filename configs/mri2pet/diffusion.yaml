@@ -1,7 +1,7 @@
 data_cfg:
   dataset: "mri2pet"
   patch_based: False
-  data_root: 'E:\datasets\mri2pet\adni_split_data\fold1'
+  data_root: null
   crop_size: [128, 128, 128]
   resize_size: null # [96, 96, 96]
 

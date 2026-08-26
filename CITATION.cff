@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use JiR, please cite the associated MICCAI paper."
+type: software
+title: "Time Matters: Rethinking Diffusion and Flow Models in One-Step Medical Image Translation"
+version: "1.0.0"
+date-released: 2026-08-26
+authors:
+  - family-names: Mei
+    given-names: Siyuan
+year: 2026
+repository-code: "https://github.com/siyuan-mei/JiR"
+license: MIT
+keywords:
+  - medical image translation
+  - diffusion models
+  - flow models
+  - deterministic generation
+notes:
+  - "Associated paper accepted for oral presentation at MICCAI 2026."
